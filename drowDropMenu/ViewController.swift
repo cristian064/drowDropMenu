@@ -10,12 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var nameOfButtonSelected : String = ""
     lazy var button : DropDownBtn = {
         let button = DropDownBtn(type: .custom)
         button.setTitle("Colors", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
 //        button.addTarget(self, action: #selector(handleTapped), for: .touchUpInside)
+        button.dropDownView.setupTableViewCell(identifierCell: "CustomTableViewCell", nibName: "CustomTableViewCell")
         button.layer.cornerRadius = 5
+        button.DropDownBtnDelegate = self
         return button
     }()
     override func viewDidLoad() {
@@ -34,7 +37,7 @@ class ViewController: UIViewController {
             button.heightAnchor.constraint(equalToConstant: 50),
             button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
         ])
-        button.dropDownView.dropDownOptions = ["1","2","3","4","5","6"]
+        button.dropDownView.dropDownOptions = [User(name: "cristian", lastName: "ayala"),User(name: "litman", lastName: "ayala")]
     }
 //    @objc func handleTapped (){
 //        print("hola")
@@ -42,3 +45,11 @@ class ViewController: UIViewController {
     
 }
 
+extension ViewController : DropDownBtnDelegate{
+    func getObjectSelected(element: Any) {
+        let element = element as! User
+        button.setTitle(element.name, for: .normal)
+    }
+    
+    
+}

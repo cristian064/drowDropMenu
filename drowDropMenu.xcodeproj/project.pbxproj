@@ -15,6 +15,10 @@
 		2E35F10923DCF5D1003B398A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E35F10723DCF5D1003B398A /* LaunchScreen.storyboard */; };
 		2E35F11223DCF6E5003B398A /* DropDownBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E35F11123DCF6E5003B398A /* DropDownBtn.swift */; };
 		2E35F11423DCFC38003B398A /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E35F11323DCFC38003B398A /* DropDownView.swift */; };
+		2E39B6DC23DE66C8006DBBA7 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E39B6DB23DE66C8006DBBA7 /* CustomTableViewCell.swift */; };
+		2E39B6DE23DE66CE006DBBA7 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E39B6DD23DE66CE006DBBA7 /* CustomTableViewCell.xib */; };
+		2E39B6E123DE679E006DBBA7 /* ConfigureCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E39B6E023DE679E006DBBA7 /* ConfigureCellProtocol.swift */; };
+		2E39B6E423DE699D006DBBA7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E39B6E323DE699D006DBBA7 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		2E35F10A23DCF5D1003B398A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E35F11123DCF6E5003B398A /* DropDownBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownBtn.swift; sourceTree = "<group>"; };
 		2E35F11323DCFC38003B398A /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
+		2E39B6DB23DE66C8006DBBA7 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		2E39B6DD23DE66CE006DBBA7 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		2E39B6E023DE679E006DBBA7 /* ConfigureCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureCellProtocol.swift; sourceTree = "<group>"; };
+		2E39B6E323DE699D006DBBA7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,8 @@
 		2E35F0FB23DCF5D1003B398A /* drowDropMenu */ = {
 			isa = PBXGroup;
 			children = (
+				2E39B6E223DE6994006DBBA7 /* Model */,
+				2E39B6DA23DE66B2006DBBA7 /* Cell */,
 				2E35F11023DCF6AF003B398A /* GenericItems */,
 				2E35F0FC23DCF5D1003B398A /* AppDelegate.swift */,
 				2E35F0FE23DCF5D1003B398A /* SceneDelegate.swift */,
@@ -79,6 +89,24 @@
 				2E35F11323DCFC38003B398A /* DropDownView.swift */,
 			);
 			path = GenericItems;
+			sourceTree = "<group>";
+		};
+		2E39B6DA23DE66B2006DBBA7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2E39B6DB23DE66C8006DBBA7 /* CustomTableViewCell.swift */,
+				2E39B6DD23DE66CE006DBBA7 /* CustomTableViewCell.xib */,
+				2E39B6E023DE679E006DBBA7 /* ConfigureCellProtocol.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		2E39B6E223DE6994006DBBA7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E39B6E323DE699D006DBBA7 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +167,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E39B6DE23DE66CE006DBBA7 /* CustomTableViewCell.xib in Resources */,
 				2E35F10923DCF5D1003B398A /* LaunchScreen.storyboard in Resources */,
 				2E35F10623DCF5D1003B398A /* Assets.xcassets in Resources */,
 				2E35F10423DCF5D1003B398A /* Main.storyboard in Resources */,
@@ -152,9 +181,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E39B6DC23DE66C8006DBBA7 /* CustomTableViewCell.swift in Sources */,
 				2E35F10123DCF5D1003B398A /* ViewController.swift in Sources */,
 				2E35F11423DCFC38003B398A /* DropDownView.swift in Sources */,
 				2E35F11223DCF6E5003B398A /* DropDownBtn.swift in Sources */,
+				2E39B6E423DE699D006DBBA7 /* User.swift in Sources */,
+				2E39B6E123DE679E006DBBA7 /* ConfigureCellProtocol.swift in Sources */,
 				2E35F0FD23DCF5D1003B398A /* AppDelegate.swift in Sources */,
 				2E35F0FF23DCF5D1003B398A /* SceneDelegate.swift in Sources */,
 			);

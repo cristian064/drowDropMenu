@@ -12,13 +12,14 @@ import UIKit
 
 
 protocol DropDownProtocol : AnyObject{
-    func dropDownBtnPressed(string : String)
+    func dropDownBtnPressed(element : Any)
 }
 
-class DropDownView : UIView , UITableViewDelegate , UITableViewDataSource {
+class DropDownView: UIView , UITableViewDelegate , UITableViewDataSource {
 
+    var identifierCell : String = ""
     weak var dropDownProtocol : DropDownProtocol?
-    var dropDownOptions = [String]()
+    var dropDownOptions = [Any]()
     lazy var tableView : UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
@@ -30,8 +31,13 @@ class DropDownView : UIView , UITableViewDelegate , UITableViewDataSource {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupTableView()
-        
+        }
+     func setupTableViewCell(identifierCell : String , nibName : String){
+        self.identifierCell = identifierCell
+        let nibCell = UINib(nibName: nibName, bundle: nil)
+        tableView.register(nibCell, forCellReuseIdentifier: self.identifierCell)
     }
+    
     
     private func setupTableView(){
         tableView.delegate = self
@@ -56,13 +62,17 @@ class DropDownView : UIView , UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = dropDownOptions[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifierCell, for: indexPath)
+        guard let cellProtocol = cell as? ConfigureCellProtocol else {
+            return UITableViewCell()
+        }
+        cellProtocol.configureCell(data: dropDownOptions[indexPath.row])
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        dropDownProtocol?.dropDownBtnPressed(string: dropDownOptions[indexPath.row])
-        print(dropDownOptions[indexPath.row])
+        dropDownProtocol?.dropDownBtnPressed(element: dropDownOptions[indexPath.row])
+
+        
     }
     
 }

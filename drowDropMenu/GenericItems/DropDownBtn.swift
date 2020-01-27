@@ -9,11 +9,14 @@
 import UIKit
 
 
-
+protocol DropDownBtnDelegate : AnyObject{
+    func getObjectSelected(element : Any)
+}
 
 
 class DropDownBtn : UIButton {
     
+    weak var DropDownBtnDelegate : DropDownBtnDelegate?
     
     var height = NSLayoutConstraint()
     var isOpen = false
@@ -32,6 +35,7 @@ class DropDownBtn : UIButton {
         setupDropDrownView()
         dropDownView.dropDownProtocol  = self 
     }
+    
     
     private func setupDropDrownView(){
 
@@ -99,8 +103,8 @@ class DropDownBtn : UIButton {
 }
 
 extension DropDownBtn : DropDownProtocol{
-    func dropDownBtnPressed(string: String) {
-        self.setTitle(string, for: .normal)
+    func dropDownBtnPressed(element: Any) {
+        DropDownBtnDelegate?.getObjectSelected(element: element)
     }
     
     
