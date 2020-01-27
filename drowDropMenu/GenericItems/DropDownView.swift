@@ -70,9 +70,10 @@ class DropDownView: UIView , UITableViewDelegate , UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        dropDownProtocol?.dropDownBtnPressed(element: dropDownOptions[indexPath.row])
-
-        
+        guard let dropDownProtocol = dropDownProtocol else {
+            return
+        }
+        dropDownProtocol.dropDownBtnPressed(element: dropDownOptions[indexPath.row])
     }
     
 }

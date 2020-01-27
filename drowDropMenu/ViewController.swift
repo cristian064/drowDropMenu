@@ -15,10 +15,12 @@ class ViewController: UIViewController {
         let button = DropDownBtn(type: .custom)
         button.setTitle("Colors", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.addTarget(self, action: #selector(handleTapped), for: .touchUpInside)
+        button.setupParentView(parentView: self.view)
         button.dropDownView.setupTableViewCell(identifierCell: "CustomTableViewCell", nibName: "CustomTableViewCell")
         button.layer.cornerRadius = 5
-        button.DropDownBtnDelegate = self
+        button.dropDownBtnDelegate = self
+        button.backgroundColor = .red
+        
         return button
     }()
     override func viewDidLoad() {
@@ -37,11 +39,8 @@ class ViewController: UIViewController {
             button.heightAnchor.constraint(equalToConstant: 50),
             button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
         ])
-        button.dropDownView.dropDownOptions = [User(name: "cristian", lastName: "ayala"),User(name: "litman", lastName: "ayala")]
+        button.dropDownView.dropDownOptions = [User(name: "cristian", lastName: "ayala"),User(name: "litman", lastName: "ayala"),User(name: "juan", lastName: "ley")]
     }
-//    @objc func handleTapped (){
-//        print("hola")
-//    }
     
 }
 
@@ -49,6 +48,7 @@ extension ViewController : DropDownBtnDelegate{
     func getObjectSelected(element: Any) {
         let element = element as! User
         button.setTitle(element.name, for: .normal)
+        print(element)
     }
     
     

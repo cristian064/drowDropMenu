@@ -16,8 +16,9 @@ protocol DropDownBtnDelegate : AnyObject{
 
 class DropDownBtn : UIButton {
     
-    weak var DropDownBtnDelegate : DropDownBtnDelegate?
     
+    weak var dropDownBtnDelegate : DropDownBtnDelegate?
+    weak var parentView : UIView?
     var height = NSLayoutConstraint()
     var isOpen = false
     lazy var dropDownView : DropDownView = {
@@ -31,18 +32,14 @@ class DropDownBtn : UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupButton()
-        setupDropDrownView()
         dropDownView.dropDownProtocol  = self 
     }
     
     
-    private func setupDropDrownView(){
-
-        
-    }
+    
+    
     override func didMoveToSuperview() {
-        guard let superViewOfButton = self.superview else  {
+        guard let superViewOfButton = self.parentView else  {
             return
         }
         superViewOfButton.addSubview(dropDownView)
@@ -58,53 +55,57 @@ class DropDownBtn : UIButton {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if isOpen {
-            NSLayoutConstraint.activate([self.height])
-            self.height.constant = 0
-            NSLayoutConstraint.activate([self.height])
-            isOpen = !isOpen
-            UIView.animate(withDuration: 0.5, delay: 0.0,usingSpringWithDamping: 0.5,initialSpringVelocity: 0.5  ,options: .curveEaseInOut, animations: {
-                self.dropDownView.center.y -= self.dropDownView.frame.height / 2
-                self.dropDownView.layoutIfNeeded()
-            }, completion: nil)
+            dismissDropDownMenu()
         }
         else{
-
-            isOpen = !isOpen
-            NSLayoutConstraint.activate([self.height])
-            
-            if self.dropDownView.tableView.contentSize.height > 150{
-            self.height.constant = 150
-            } else {
-                self.height.constant = self.dropDownView.tableView.contentSize.height
-            }
-            NSLayoutConstraint.activate([self.height])
-            UIView.animate(withDuration: 0.5, delay: 0.0,usingSpringWithDamping: 0.5,initialSpringVelocity: 0.5  ,options: .curveEaseInOut, animations: {
-                self.dropDownView.center.y += self.dropDownView.frame.height / 2
-                self.dropDownView.layoutIfNeeded()
-                
-            }, completion: nil)
+            openDropDownMenu()
         }
     }
+    func setupParentView(parentView : UIView){
+        self.parentView = parentView
+    }
     
+    private func dismissDropDownMenu(){
+        NSLayoutConstraint.activate([self.height])
+        self.height.constant = 0
+        NSLayoutConstraint.activate([self.height])
+        isOpen = !isOpen
+        UIView.animate(withDuration: 0.5, delay: 0.0,usingSpringWithDamping: 0.5,initialSpringVelocity: 0.5  ,options: .curveEaseInOut, animations: {
+            self.dropDownView.center.y -= self.dropDownView.frame.height / 2
+            self.dropDownView.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    
+    private func openDropDownMenu(){
+        isOpen = !isOpen
+        NSLayoutConstraint.activate([self.height])
+        
+        if self.dropDownView.tableView.contentSize.height > 150{
+        self.height.constant = 150
+        } else {
+            self.height.constant = self.dropDownView.tableView.contentSize.height
+        }
+        NSLayoutConstraint.activate([self.height])
+        UIView.animate(withDuration: 0.5, delay: 0.0,usingSpringWithDamping: 0.5,initialSpringVelocity: 0.5  ,options: .curveEaseInOut, animations: {
+            self.dropDownView.center.y += self.dropDownView.frame.height / 2
+            self.dropDownView.layoutIfNeeded()
+            
+        }, completion: nil)
+
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    
-    private func setupButton(){
-        self.backgroundColor = .red
-    }
-    
-    
-    
-    
-    
+
 }
 
 extension DropDownBtn : DropDownProtocol{
     func dropDownBtnPressed(element: Any) {
-        DropDownBtnDelegate?.getObjectSelected(element: element)
+        dismissDropDownMenu()
+        dropDownBtnDelegate?.getObjectSelected(element: element)
     }
     
     

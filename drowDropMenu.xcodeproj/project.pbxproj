@@ -85,6 +85,7 @@
 		2E35F11023DCF6AF003B398A /* GenericItems */ = {
 			isa = PBXGroup;
 			children = (
+				2E39B6E023DE679E006DBBA7 /* ConfigureCellProtocol.swift */,
 				2E35F11123DCF6E5003B398A /* DropDownBtn.swift */,
 				2E35F11323DCFC38003B398A /* DropDownView.swift */,
 			);
@@ -96,7 +97,6 @@
 			children = (
 				2E39B6DB23DE66C8006DBBA7 /* CustomTableViewCell.swift */,
 				2E39B6DD23DE66CE006DBBA7 /* CustomTableViewCell.xib */,
-				2E39B6E023DE679E006DBBA7 /* ConfigureCellProtocol.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
